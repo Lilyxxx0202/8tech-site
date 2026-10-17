@@ -1,0 +1,319 @@
+/* ==================== CARRINHO LATERAL (DRAWER) ==================== */
+.cart-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.cart-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-surface);
+  z-index: 501;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cart-drawer-overlay.active .cart-drawer {
+  transform: translateX(0);
+}
+
+/* Header do Carrinho */
+.cart-drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-surface);
+}
+
+.cart-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-header-title h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.cart-count-badge {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--border-radius-pill);
+}
+
+.btn-close-drawer {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-surface-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.btn-close-drawer:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* Lista de Itens */
+.cart-items-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Estado Vazio do Carrinho */
+.cart-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 40px 20px;
+}
+
+.empty-cart-icon {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+  animation: pulseHeart 2s infinite ease-in-out;
+}
+
+.cart-empty-state h4 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.cart-empty-state p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  max-width: 260px;
+}
+
+/* Item Individual do Carrinho */
+.cart-item-row {
+  display: flex;
+  gap: 14px;
+  padding: 12px;
+  background: var(--bg-surface-muted);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color);
+  align-items: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.cart-item-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--border-radius-xs);
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #e2e8f0;
+}
+
+.cart-item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.cart-item-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.cart-item-price-unit {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.cart-qty-controller {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-pill);
+  padding: 2px 6px;
+}
+
+.btn-qty {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+}
+
+.btn-qty:hover {
+  background: var(--bg-surface-muted);
+  color: var(--color-primary);
+}
+
+.cart-qty-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0 8px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.cart-item-subtotal {
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+}
+
+.btn-remove-item {
+  color: var(--text-muted);
+  padding: 6px;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.btn-remove-item:hover {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+/* Rodapé do Carrinho (Resumo e Botões) */
+.cart-drawer-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+.cart-summary-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.summary-total {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 8px;
+}
+
+.summary-total .total-amount {
+  font-size: 1.45rem;
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+}
+
+.cart-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-actions-group .btn {
+  width: 100%;
+}
+
+.btn-clear-cart-link {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-clear-cart-link:hover {
+  color: #ef4444;
+}
+
+/* ==================== MODAL DE CHECKOUT ==================== */
+.checkout-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.form-input, .form-textarea {
+  background: var(--bg-surface-muted);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  transition: border-color var(--transition-fast);
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--color-primary);
+  background: var(--bg-surface);
+}
+
+
