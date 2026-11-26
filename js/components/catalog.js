@@ -65,6 +65,15 @@ class CatalogComponent {
     const products = this.getFilteredProducts();
 
     if (products.length === 0) {
+      if (!this.searchQuery) {
+        this.container.innerHTML = `
+          <div class="em-breve-banner">
+            <img src="images/em_breve_novidades.jfif" alt="Em breve: novidades chegando na 8º Tech!" class="em-breve-img" />
+          </div>
+        `;
+        return;
+      }
+
       this.container.innerHTML = `
         <div class="empty-catalog-state">
           <div class="empty-icon">🔍</div>
