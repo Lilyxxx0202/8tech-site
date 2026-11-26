@@ -487,6 +487,8 @@ function openCheckoutModal() {
     totalAmountEl.textContent = `R$ ${window.cart.getTotalPrice().toFixed(2).replace(".", ",")}`;
   }
 
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 function closeCheckoutModal() {
