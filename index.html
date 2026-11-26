@@ -243,8 +243,24 @@
 
     <!-- Seção do Catálogo de Produtos -->
     <section id="catalog-section" class="container" aria-label="Catálogo de Produtos">
-      <div class="em-breve-banner">
-        <img src="images/em_breve_novidades.jfif" alt="Em breve: novidades chegando na 8º Tech!" class="em-breve-img" />
+      <div class="catalog-header-bar">
+        <div id="category-pills" class="category-pills" role="tablist" aria-label="Categorias de produtos">
+          <!-- Renderizado dinamicamente via app.js -->
+        </div>
+
+        <div class="sort-select-wrap">
+          <label for="sort-select" class="sort-label">Ordenar por:</label>
+          <select id="sort-select" class="sort-select" aria-label="Ordenar produtos">
+            <option value="default">Destaques</option>
+            <option value="rating">Melhor Avaliados</option>
+            <option value="reviews">Mais Populares</option>
+            <option value="name-asc">Ordem Alfabética (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="products-grid" class="products-grid">
+        <!-- Renderizado dinamicamente via catalog.js -->
       </div>
     </section>
   </main>
@@ -434,7 +450,7 @@
         <div class="footer-col">
           <h5>Categorias Promocionais</h5>
           <ul class="footer-links">
-            <li><a href="#catalog-section">✏️ Papelaria Kawaii & Estudos</a></li>
+            <li><a href="#catalog-section">✏️ Papelaria e Variedades</a></li>
             <li><a href="#catalog-section">💄 Beleza, Skincare & Cuidados</a></li>
             <li><a href="#catalog-section">⚡ Zona Otaku & K-Pop</a></li>
             <li><a href="#catalog-section">✨ Novidades & Achadinhos</a></li>
